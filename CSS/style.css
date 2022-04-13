@@ -1,0 +1,78 @@
+.body{
+    background-color: #E5E5E5;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*CSS HEADER*/
+
+.topo{
+    background-color: #ffffff;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom:1px solid silver;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    justify-content: space-between;
+}
+
+.topo > .logo{
+    margin-left: 22px;
+}
+
+.topo > .icone{
+    margin-right: 22px;
+}
+
+/* CSS QUADRO DE MENSAGENS */
+
+.quadro-mensagens{
+    margin-top: 100px;
+}
+
+.mensagem{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.hora{
+    color: #AAAAAA;
+    margin-right: 8px;
+}
+
+.texto{
+
+}
+
+/*CSS MENU FOOTER*/
+
+.menu-footer{
+    background-color: #ffffff;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-top:1px solid silver;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    justify-content: space-between;
+}
+
+.menu-footer > input{
+    margin-left: 18px;
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 5px;
+    width: 95%;
+}
+
+.menu-footer > ion-icon{
+    margin-right: 18px;
+    margin-left: 18px;
+}
