@@ -2,6 +2,20 @@ let mensagens = []
 
 setInterval(buscarMensagens, 3000);
 
+function entrarNaSala(){
+    const usuario = {
+        nome: prompt("Qual o seu nome?")
+    }
+    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants ", usuario)
+
+    promise.then()
+    promise.catch(tratarErro)
+}
+
+function tratarErro(){
+    alert('usuário não encontrado')
+}
+
 function buscarMensagens() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
 
@@ -17,7 +31,6 @@ function carregarDados(response) {
 function renderizarMensagens() {
     const ulMensagens = document.querySelector(".lista-mensagens");
     ulMensagens.innerHTML = "";
-    ulMensagens.scrollIntoView();
 
     for(let i = 0; i < mensagens.length; i++){
         if(mensagens[i].text === "entra na sala..." || mensagens[i].text === "sai da sala..."){
@@ -51,5 +64,12 @@ function renderizarMensagens() {
             </li>
             `;
         }
+
+        let elemento = document.querySelectorAll(".mensagem")
+        elemento = elemento[i]
+        elemento.scrollIntoView()
+
     }
+
+
 }
