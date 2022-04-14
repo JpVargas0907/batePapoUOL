@@ -40,13 +40,29 @@
     margin-right: 8px;
 }
 
-.hora{
+.time{
     color: #AAAAAA;
-    margin-right: 8px;
+    margin-right: 4px;
 }
 
-.texto{
+.from{
+    margin-right: 4px;
+    font-weight: bold;
 
+}
+
+.to{
+    margin-right: 6px;
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+.cinza{
+    background-color: #DCDCDC;
+}
+
+.rosa{
+    background-color: #ffdede;
 }
 
 /*CSS MENU FOOTER*/
