@@ -17,24 +17,39 @@ function carregarDados(response) {
 function renderizarMensagens() {
     const ulMensagens = document.querySelector(".lista-mensagens");
     ulMensagens.innerHTML = "";
+    ulMensagens.scrollIntoView();
 
     for(let i = 0; i < mensagens.length; i++){
-        ulMensagens.innerHTML += `
-        <li class="mensagem" verificarStatus(this)">
-            <p class="time">(${mensagens[i].time})</p>
-            <p class="from">${mensagens[i].from}</p>
-            <p>para</p>
-            <p class="to">${mensagens[i].to}:</p>
-            <p class="text">${mensagens[i].text}</p>
-        </li>
-        `;
-    }
-}
-
-function verificarStatus(elemento){
-    if(mensagens[i].text === "entra na sala ..." || mensagens[i].text === "sai da sala..."){
-        elemento.classList.add(".cinza")
-    } else if(mensagens[i] !== "Todos"){
-        elemento.classList.add(".rosa")
+        if(mensagens[i].text === "entra na sala..." || mensagens[i].text === "sai da sala..."){
+            ulMensagens.innerHTML += `
+            <li class="mensagem cinza">
+                <p class="time">(${mensagens[i].time})</p>
+                <p class="from">${mensagens[i].from}</p>
+                <p>para</p>
+                <p class="to">${mensagens[i].to}:</p>
+                <p class="text">${mensagens[i].text}</p>
+            </li>
+            `;
+        } else if (mensagens[i].to !== "Todos"){
+            ulMensagens.innerHTML += `
+            <li class="mensagem rosa">
+                <p class="time">(${mensagens[i].time})</p>
+                <p class="from">${mensagens[i].from}</p>
+                <p>para</p>
+                <p class="to">${mensagens[i].to}:</p>
+                <p class="text">${mensagens[i].text}</p>
+            </li>
+            `;
+        } else {
+            ulMensagens.innerHTML += `
+            <li class="mensagem">
+                <p class="time">(${mensagens[i].time})</p>
+                <p class="from">${mensagens[i].from}</p>
+                <p>para</p>
+                <p class="to">${mensagens[i].to}:</p>
+                <p class="text">${mensagens[i].text}</p>
+            </li>
+            `;
+        }
     }
 }
