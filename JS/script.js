@@ -1,19 +1,27 @@
 let mensagens = []
+let nome
 
-setInterval(buscarMensagens, 3000);
+entrarNaSala()
+
+function manterConexao(name){
+    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", name)
+}
 
 function entrarNaSala(){
-    const usuario = {
-        nome: prompt("Qual o seu nome?")
-    }
-    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants ", usuario)
+    let name = prompt("Qual o seu nome?")
+    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants ", {
+        name: `${name}`
+    })
 
-    promise.then()
-    promise.catch(tratarErro)
+    nome = name
+
+    requisicao.then(setInterval(buscarMensagens, 3000))
+    requisicao.catch(tratarErro)
 }
 
 function tratarErro(){
-    alert('usuário não encontrado')
+    alert('Usuário já cadastrado, tente entrar novamente!')
+    entrarNaSala();
 }
 
 function buscarMensagens() {
@@ -21,6 +29,7 @@ function buscarMensagens() {
 
     //callback
     promise.then(carregarDados);
+    setInteval(manterConexao(nome), 4000)
 }
 
 function carregarDados(response) {
