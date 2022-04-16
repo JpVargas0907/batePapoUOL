@@ -3,9 +3,16 @@ let nome
 
 entrarNaSala()
 
-function manterConexao(name){
-    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", name)
+function manterConexao(){
+    let nameCopy = {
+        name: nome
+    }
+    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", nameCopy)
+
+    requisicao.catch(tratarErro2)
 }
+
+const tratarErro2 = () => console.log(error.response)
 
 function entrarNaSala(){
     let name = prompt("Qual o seu nome?")
@@ -15,6 +22,7 @@ function entrarNaSala(){
 
     nome = name
 
+    requisicao.then(setInterval(manterConexao, 5000))
     requisicao.then(setInterval(buscarMensagens, 3000))
     requisicao.catch(tratarErro)
 }
@@ -29,7 +37,7 @@ function buscarMensagens() {
 
     //callback
     promise.then(carregarDados);
-    setInteval(manterConexao(nome), 4000)
+
 }
 
 function carregarDados(response) {
@@ -77,8 +85,21 @@ function renderizarMensagens() {
         let elemento = document.querySelectorAll(".mensagem")
         elemento = elemento[i]
         elemento.scrollIntoView()
-
     }
 
 
+}
+
+function enviarMensagem(){
+    let text = document.querySelector("input").value
+    let newMessage = {
+        from: `${nome}`,
+        to: "Todos",
+        text: `${text}`,
+        type: "message"
+    }
+
+    console.log(newMessage)
+
+    const enviarMensagem = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", newMessage)
 }
