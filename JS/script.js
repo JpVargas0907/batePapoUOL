@@ -8,11 +8,7 @@ function manterConexao(){
         name: nome
     }
     const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", nameCopy)
-
-    requisicao.catch(tratarErro2)
 }
-
-const tratarErro2 = () => console.log(error.response)
 
 function entrarNaSala(){
     let name = prompt("Qual o seu nome?")
@@ -30,6 +26,10 @@ function entrarNaSala(){
 function tratarErro(){
     alert('Usuário já cadastrado, tente entrar novamente!')
     entrarNaSala();
+}
+
+function tratarErroUsuarioOff(){
+    window.location.reload(entrarNaSala)
 }
 
 function buscarMensagens() {
@@ -83,23 +83,30 @@ function renderizarMensagens() {
         }
 
         let elemento = document.querySelectorAll(".mensagem")
-        elemento = elemento[i]
-        elemento.scrollIntoView()
+        elemento[i].scrollIntoView()
     }
 
 
 }
 
-function enviarMensagem(){
-    let text = document.querySelector("input").value
+function enviarMenssagem(){
+    let text = document.querySelector(".text-input").value
     let newMessage = {
         from: `${nome}`,
         to: "Todos",
         text: `${text}`,
         type: "message"
     }
-
-    console.log(newMessage)
-
     const enviarMensagem = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", newMessage)
+    enviarMensagem.catch(tratarErroUsuarioOff);
+    document.querySelector(".text-input").value = ""
 }
+
+document.addEventListener("keypress", function(e){
+    let verificarConteudo = document.querySelector(".text-input").value
+    if(e.key === "Enter" && verificarConteudo !== ""){
+        enviarMenssagem()
+    } else if (e.key === "Enter" && verificarConteudo === ""){
+        alert("Digite algo para enviar uma mensagem.")
+    }
+})

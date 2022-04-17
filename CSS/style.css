@@ -11,11 +11,11 @@
     width: 100%;
     display: flex;
     align-items: center;
-    border-bottom:1px solid silver;
     position: fixed;
     top: 0px;
     left: 0px;
     justify-content: space-between;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .topo > .logo{
@@ -73,6 +73,10 @@
     background-color: #ffffff;
 }
 
+/*CSS MENU LATERAL */
+
+
+
 /*CSS MENU FOOTER*/
 
 .menu-footer{
@@ -81,22 +85,57 @@
     width: 100%;
     display: flex;
     align-items: center;
-    border-top:1px solid silver;
     position: fixed;
     bottom: 0px;
     left: 0px;
     justify-content: space-between;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .menu-footer > input{
     margin-left: 18px;
-    border: 1px solid silver;
+    border-style: none;
     border-radius: 5px;
     padding: 5px;
-    width: 80%;
+    width: 90%;
 }
 
 .menu-footer > ion-icon{
     margin-right: 18px;
     margin-left: 18px;
+    height: 26px;
+    width: 26px;
+    cursor: pointer;
+}
+
+/* CSS tela de entrada do bate papo */
+
+.tela-entrada{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.tela-entrada > input {
+    width: 260px;
+    height: 54px;
+    border: 1px solid #D7D7D7;
+    color: #AEAEAE;
+    text-align: center;
+    margin-top: 94px;
+    border-radius: 4px;
+}
+
+.tela-entrada > button {
+    background-color: #E7E7E7;
+    color: #696969;
+    text-align: center;
+    width: 110px;
+    height: 45px;
+    border-radius: 9px;
+    border-style: none;
+    margin-top: 15px;
+    cursor: pointer;
 }
