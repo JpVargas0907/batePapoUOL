@@ -1,43 +1,43 @@
-let mensagens = []
-let nome
-const tela = document.querySelector(".tela-entrada")
+let mensagens = [];
+let nome;
+const tela = document.querySelector(".tela-entrada");
 
 function manterConexao(){
     let nameCopy = {
         name: nome
-    }
-    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", nameCopy)
+    };
+    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", nameCopy);
 }
 
 function registrarNome(){
     if(document.querySelector(".tela-entrada .text-input").value !== ""){
-        nome = document.querySelector(".tela-entrada .text-input").value
+        nome = document.querySelector(".tela-entrada .text-input").value;
         tela.style.display = "none"
-        document.querySelector(".menu-footer").style.display = "flex"
+        document.querySelector(".menu-footer").style.display = "flex";
         entrarNaSala()
     } else if (document.querySelector(".tela-entrada .text-input").value === ""){
-        alert("Campo nome vazio. Registre seu nome para poder entrar!")
+        alert("Campo nome vazio. Registre seu nome para poder entrar!");
     }
 }
 
 function entrarNaSala(){
     const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", {
         name: `${nome}`
-    })
+    });
 
-    requisicao.then(setInterval(manterConexao, 5000))
-    requisicao.then(setInterval(buscarMensagens, 3000))
-    requisicao.catch(tratarErro)
+    requisicao.then(setInterval(manterConexao, 5000));
+    requisicao.then(setInterval(buscarMensagens, 3000));
+    requisicao.catch(tratarErro);
 }
 
 function tratarErro(){
-    alert('Usuário já cadastrado, tente entrar novamente!')
-    tela.style.display = "flex"
+    alert('Usuário já cadastrado, tente entrar novamente!');
+    tela.style.display = "flex";
 }
 
 function tratarErroUsuarioOff(){
-    alert("Você está offline. Entre novamente!")
-    tela.style.display = "flex"
+    alert("Você está offline. Entre novamente!");
+    tela.style.display = "flex";
 }
 
 function buscarMensagens() {
@@ -91,8 +91,8 @@ function renderizarMensagens() {
             `;
         }
 
-        let elemento = document.querySelectorAll(".mensagem")
-        elemento[i].scrollIntoView()
+        let elemento = document.querySelectorAll(".mensagem");
+        elemento[i].scrollIntoView();
     }
 
 
@@ -105,10 +105,10 @@ function enviarMensagem(){
         to: "Todos",
         text: `${text}`,
         type: "message"
-    }
+    };
     const enviarMensagem = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", newMessage)
     enviarMensagem.catch(tratarErroUsuarioOff);
-    document.querySelector(".menu-footer .text-input").value = ""
+    document.querySelector(".menu-footer .text-input").value = "";
 }
 
 function aparecerMenuLateral(){
@@ -116,10 +116,10 @@ function aparecerMenuLateral(){
 }
 
 document.addEventListener("keypress", function(e){
-    let verificarConteudo = document.querySelector(".menu-footer .text-input").value
+    let verificarConteudo = document.querySelector(".menu-footer .text-input").value;
     if(e.key === "Enter" && verificarConteudo !== ""){
-        enviarMensagem()
+        enviarMensagem();
     } else if (e.key === "Enter" && verificarConteudo === ""){
-        alert("Digite algo para enviar uma mensagem.")
+        alert("Digite algo para enviar uma mensagem.");
     }
 })
