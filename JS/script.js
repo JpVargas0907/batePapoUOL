@@ -13,6 +13,7 @@ function registrarNome(){
     if(document.querySelector(".tela-entrada .text-input").value !== ""){
         nome = document.querySelector(".tela-entrada .text-input").value
         tela.style.display = "none"
+        document.querySelector(".menu-footer").style.display = "flex"
         entrarNaSala()
     } else if (document.querySelector(".tela-entrada .text-input").value === ""){
         alert("Campo nome vazio. Registre seu nome para poder entrar!")
