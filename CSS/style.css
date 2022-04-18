@@ -75,7 +75,36 @@
 
 /*CSS MENU LATERAL */
 
+.menu-lateral{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    z-index: 2;
+    width: 260px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    right: 0px;
+    top: 0px;
+    text-align: center;
+}
 
+.contato{
+    left: 0;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.lock{
+    left: 0;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.unlock{
+    left: 0;
+    display: flex;
+}
 
 /*CSS MENU FOOTER*/
 
@@ -111,11 +140,16 @@
 /* CSS tela de entrada do bate papo */
 
 .tela-entrada{
+    position: relative;
+    z-index: 1;
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    width: 100%;
+    background-color: #FFFFFF;
+
 }
 
 .tela-entrada > input {
@@ -138,4 +172,8 @@
     border-style: none;
     margin-top: 15px;
     cursor: pointer;
+}
+
+.none{
+    display: none;
 }

@@ -1,7 +1,6 @@
 let mensagens = []
 let nome
-
-entrarNaSala()
+const tela = document.querySelector(".tela-entrada")
 
 function manterConexao(){
     let nameCopy = {
@@ -10,13 +9,20 @@ function manterConexao(){
     const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", nameCopy)
 }
 
-function entrarNaSala(){
-    let name = prompt("Qual o seu nome?")
-    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants ", {
-        name: `${name}`
-    })
+function registrarNome(){
+    if(document.querySelector(".tela-entrada .text-input").value !== ""){
+        nome = document.querySelector(".tela-entrada .text-input").value
+        tela.style.display = "none"
+        entrarNaSala()
+    } else if (document.querySelector(".tela-entrada .text-input").value === ""){
+        alert("Campo nome vazio. Registre seu nome para poder entrar!")
+    }
+}
 
-    nome = name
+function entrarNaSala(){
+    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", {
+        name: `${nome}`
+    })
 
     requisicao.then(setInterval(manterConexao, 5000))
     requisicao.then(setInterval(buscarMensagens, 3000))
@@ -25,14 +31,16 @@ function entrarNaSala(){
 
 function tratarErro(){
     alert('Usuário já cadastrado, tente entrar novamente!')
-    entrarNaSala();
+    tela.style.display = "flex"
 }
 
 function tratarErroUsuarioOff(){
-    window.location.reload(entrarNaSala)
+    alert("Você está offline. Entre novamente!")
+    tela.style.display = "flex"
 }
 
 function buscarMensagens() {
+
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
 
     //callback
@@ -89,8 +97,8 @@ function renderizarMensagens() {
 
 }
 
-function enviarMenssagem(){
-    let text = document.querySelector(".text-input").value
+function enviarMensagem(){
+    let text = document.querySelector(".menu-footer .text-input").value
     let newMessage = {
         from: `${nome}`,
         to: "Todos",
@@ -99,13 +107,17 @@ function enviarMenssagem(){
     }
     const enviarMensagem = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", newMessage)
     enviarMensagem.catch(tratarErroUsuarioOff);
-    document.querySelector(".text-input").value = ""
+    document.querySelector(".menu-footer .text-input").value = ""
+}
+
+function aparecerMenuLateral(){
+
 }
 
 document.addEventListener("keypress", function(e){
-    let verificarConteudo = document.querySelector(".text-input").value
+    let verificarConteudo = document.querySelector(".menu-footer .text-input").value
     if(e.key === "Enter" && verificarConteudo !== ""){
-        enviarMenssagem()
+        enviarMensagem()
     } else if (e.key === "Enter" && verificarConteudo === ""){
         alert("Digite algo para enviar uma mensagem.")
     }

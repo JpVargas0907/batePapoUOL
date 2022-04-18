@@ -16,9 +16,43 @@
 </head>
 
 <body>
+    <div class="tela-entrada">
+        <img src="./_imgs/logo 2.png" alt="Logo bate papo UOL">
+        <input class="text-input" type="text" placeholder="Digite seu nome" required>
+        <button class="btn-entrar" onclick="registrarNome()">Entrar</button>
+    </div>
+    
     <header class="topo">
         <img class="logo" src="./_imgs/logo 1.png" alt="">
-        <img class="icone" src="./_imgs/Vector.png" alt="">
+        <img onclick="aparecerMenuLateral()" class="icone" src="./_imgs/Vector.png" alt="">
+        <div class="menu-lateral">
+            <div class="contatos">
+                <p>Escolha um contato para enviar mensagem:</p>
+                <div class="contato">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <p>Todos</p>
+                </div>
+                <div class="contato">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <p>Todos</p>
+                </div>
+                <div class="contato">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <p>Todos</p>
+                </div>
+            </div>
+            <div class="visibilidade">
+                <p>Escolha a visibilidade:</p>
+                <div class="unlock">
+                    <ion-icon name="lock-open-outline"></ion-icon>
+                    <p>Público</p>
+                </div>
+                <div class="lock">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    <p>Reservadamente</p>
+                </div>
+            </div>
+        </div>
     </header>
     <div class="quadro-mensagens">
         <ul class="lista-mensagens">
@@ -27,7 +61,7 @@
     </div>
     <footer class="menu-footer">
         <input class="text-input" type="text" name="" id="" placeholder="Digite aqui ...">
-        <ion-icon name="paper-plane-outline" onclick="enviarMenssagem()"></ion-icon>
+        <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
