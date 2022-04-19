@@ -43,6 +43,7 @@
     margin-left: 8px;
     margin-right: 8px;
     margin-bottom: 4px;
+    word-break: break-word;
 }
 
 .time{
